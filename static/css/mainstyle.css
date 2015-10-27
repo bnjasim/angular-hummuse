@@ -1,0 +1,634 @@
+
+a:hover{
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* @font-face {
+    font-family: "contra";
+    src: url(fonts/contra.ttf) format("truetype");
+}
+*/
+
+body{
+	font-family:  "Palatino Linotype", garamond, serif; /*georgia*/
+	font-size: 16px;
+  overflow-y: scroll;
+  background-color: #fcfcfc;
+}
+
+body.leave-fixed-space{
+  margin-top: 110px;
+}
+@media (min-width: 768px) { /* for non-mobiles */
+  body.leave-fixed-space{
+    margin-top: 70px;
+  }
+}
+
+
+
+/* Navigation at the top of the page */
+
+.navbar-fixed-top {
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 3px 2px -2px rgba(200,200,200,0.2);
+  background-color: #ff4500; /* orange red - alternative is vermilion #E34234*/
+}
+
+.navbar-brand { /*mobile first*/
+  height: 50px;
+  padding-top: 15px;
+  padding-left: 15px; /* mobile only */
+  font-size: 20px; /* mobile only */
+  line-height: 20px;
+  color: white !important;
+}
+
+@media (min-width: 991px) { /* for desktops */
+  .navbar-brand {
+    font-size: 24px;
+    padding-left: 0px;
+    color: #ff4500 !important;
+  }
+
+  .navbar-fixed-top {
+    border-bottom: 1px solid #ddd;
+    border-top: 2px solid rgba(256,69,0,0.5);
+    background-color: #f8f8f8; /* orange red - alternative is vermilion #E34234*/
+  }
+}
+
+.navbar-toggle {
+  border-color: transparent !important;
+}
+.navbar-toggle:hover, .navbar-toggle:focus {
+  background-color: transparent !important;
+}
+
+#mobile-top-bar {
+  height: 40px;
+}
+
+
+#mobile-top-bar .row {
+  overflow: hidden; /* hack http://stackoverflow.com/questions/1260122/expand-div-to-take-remaining-width */
+  height: 100%;
+}
+
+#mobile-top-bar .row .mobile-top-cols {
+  height: 100%;
+  text-align: center;
+  line-height: 100%;
+} 
+
+#mobile-top-bar .row a {
+  position: relative; /* vertical aligning  - huh! */
+  top: 50%; 
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  display: inline-block;
+  margin-left: -15px; /* to compenate margin-right of button */
+  color: #777;
+
+}
+
+#mobile-top-bar .navbar-toggle { /* the left button */
+  float: left;
+  padding: 6px 9px;
+  margin: 6px 9px;
+  margin-right: 15px;
+  border-color: transparent;
+}
+
+#mobile-top-bar .icon-bar {
+  width: 20px;
+}
+
+/* End of Navigation top of the page */
+
+
+
+/* Now the Left panel which should be fixed and swipable from the left in mobile */
+@media (min-width: 768px) {  /* left panel in non-mobiles should never be display:none; from ng-hid*/
+  #left-panel {
+    display: block !important; /* ng-hide also puts !important, but this is id */
+  }
+}
+
+@media (max-width: 767px) { /* for mobiles */
+  #left-panel {
+    position: fixed;
+    left: 0;
+    top: 90px;
+    border: 1px solid rgba(200,200,200,0.3);
+    z-index: 1050;
+    background-color: #fcfcfc;
+    width: 200px;
+    
+  }
+  
+  #left-panel.ng-hide {
+    left: -200px;
+    transition: left 0.2s ease-in;
+  }
+  #left-panel.ng-hide-remove-active {
+    left: 0px;
+    transition: left 0.15s ease-in;
+  }
+}
+
+/* An overlay at the left for swiping in mobiles */
+#left-overlay {
+  width: 20px;
+  height: 700px;
+  position: fixed;
+  top: 90px;
+  left: 0px;
+  background-color: transparent;
+  z-index: 1060; /* left panel is 1050 */
+  /* pointer-events: none;  for delegating clicks to the bottom layer, but swipe won't work */
+}
+/* End of Left panel */
+
+/* Right Panel should be Collapsable in Mobile and Tablets - Fixed 
+/* Right panel which should be fixed and swipable from the right in mobile */
+@media (min-width: 992px) {  /* right panel in desktops should never be display:none; from ng-hid*/
+  #right-panel {
+    display: block !important; /* ng-hide also puts !important, but this is id */
+  }
+}
+
+@media (max-width: 991px) { /* for mobiles */
+  #right-panel {
+    position: fixed;
+    right: 0;
+    top: 50px;
+    border: 1px solid rgba(200,200,200,0.3);
+    z-index: 1050;
+    background-color: #fcfcfc;
+    width: 200px;
+    min-height: 400px;
+  }
+  
+  #right-panel.ng-hide {
+    right: -200px;
+    transition: right 0.25s ease-in;
+  }
+  #right-panel.ng-hide-remove-active {
+    right: 0px;
+    transition: right 0.2s ease-in;
+  }
+}
+
+/* An overlay at the right for swiping in mobiles */
+#right-overlay {
+  width: 20px;
+  height: 700px;
+  position: fixed;
+  top: 50px;
+  right: 0px;
+  background-color: transparent;
+  z-index: 1060; /* left panel is 1050 */
+  /* pointer-events: none;  for delegating clicks to the bottom layer, but swipe won't work */
+}
+
+
+/* Main Panel */
+
+#main-panel {
+  min-height: 500px;
+}
+
+/* Main Panel */
+
+#timer{
+  margin-top: 20px;
+  width: 130px;
+  padding: 10px 5px !important;
+  font-family: Helvetica, "Open Sans" Arial, Verdana, sans-serif;
+}
+.timer-body{
+  text-align: center;
+  width: 100%;
+  font-size: 2em;
+  margin: 6px 0px;
+}
+.timer-footer{
+  width: 100%;
+  position: relative;
+  left: 0px;
+}
+#play-pause-timer{
+  width: 43%;
+  display: inline-block;
+  text-align: right;
+  margin-right: 5px;
+}
+#stop-timer{
+  display: inline-block;
+  text-align: left;
+  margin-left: 5px;
+  color: #665555;
+}
+.stop-timer-active{
+  color: #bb6688 !important;
+}
+
+#play-pause-timer:hover{
+  cursor: pointer;
+}
+#stop-timer:hover{
+  cursor: pointer;
+}
+@media (max-width: 991px) { /* for xtra-small and small devices */
+  #timer{
+    margin-top:15px;
+    width: 120px;
+  }
+  #play-pause-timer{
+    width:30px;
+  }
+  .timer-footer{
+    margin-left: 23px;
+  }
+
+}
+
+.timer-header{
+  font-size: 12px;
+  font-weight: 500;
+  font-style: italic;
+  color: #555;
+  width: 100%;
+  height: 20px;
+ /* box-shadow:  0 1px 2px -1px rgba(200,200,200,0.7);*/
+
+}
+.truncated { 
+  display: inline-block;
+  min-width: 100%; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  white-space: nowrap; 
+  text-align: center;
+}
+#right-caret-arrow:hover{
+  cursor: pointer;
+}
+#left-caret-arrow:hover{
+  cursor: pointer;
+}
+.right-caret {
+  float: right;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-top: 3px;
+  vertical-align: top;
+  border-left: 7px dashed;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+}
+.left-caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-top: 3px;
+  vertical-align: top;
+  border-right: 7px dashed;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+}
+
+
+.required:after { content:" *"; }
+.required{
+  color: red;
+}
+
+.panel-content{
+  margin-top: 11px;
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+}
+.panel-header{
+	font-family: Helvetica, Arial, Verdana, sans-serif;
+	font-size: 11px;
+	font-weight: 500;
+  margin-top: 22px;
+	margin-bottom: 8px;
+  border-bottom: 1px solid rgba(200,200,200,0.5);
+  padding-bottom: 4px;
+
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  font-weight: 600;
+}
+
+
+.lef-panel-icons{
+  font-size: 13px;
+  margin-right: 3px;
+}
+
+.modal-icons{
+  margin-right: 5px;
+  color: #777;
+}
+
+.theme-color{
+  color: #5cb85c; /*bootstrap green*/
+}
+
+
+.left-panel{
+  font-size: 14px;
+}
+.left-panel a{
+  width: 100%;
+  display: inline-block;
+  padding: 1px 0px;
+}
+.left-panel a:hover{
+  background-color: #f5f5f5;
+  border-radius: 2px;
+  text-decoration: none;
+}
+
+.left-panel-ul{
+  list-style: none;
+  padding-left: 0px;
+}
+
+.left-panel-ul > li > a{
+  width: 100%;
+  display: inline-block;
+  padding: 1px 0px;
+}
+.left-panel-ul > li > a:hover {
+  /*font-weight: 700;
+  font-size: 13px;*/
+  background-color: #f5f5f5;
+  text-decoration: none;
+}
+
+.left-panel-ul > li{
+  margin-bottom: 4px;
+  font-size: 15px;
+  width: 100%;
+}
+@media (max-width: 991px) { /* for xtra-small and small devices */
+  .left-panel-ul > li{
+    display: inline-block;
+    width: 80px !important;
+    vertical-align: middle;
+  }
+}
+ 
+.custom > li:hover{
+  background-color: #E34234 !important;
+}
+
+.left-panel-link-highlight{
+  /*font-weight: 900;
+  color: #57d;
+  font-size: 13px;
+  text-decoration: underline;*/
+  background-color: #f5f5f5;
+  border-radius: 2px;
+  /* cyan- background-color: #E6FFF6;*/
+}
+
+
+#load-more-projects-div{
+  width: 100%;
+}
+
+#load-more-projects{
+  display: inline-block;
+  margin-left: 0%;
+  font-size:13px;
+  font-family: Times;
+}
+
+.add-near-project{
+  float: right;
+  display: inline-block;
+  text-align: right;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.my-font-heading{
+	font-family: Helvetica, Arial, Verdana, sans-serif;
+}
+
+.add-data{
+	width: 75px;
+	max-height: 50px;
+	border-radius: 20px;
+	background-color: rgba(255,255,255,0.8);
+}
+
+.my-thumbnail-marker{
+	width: 22px;
+	display: inline-block;
+}
+
+@media (min-width: 768px){
+  .search-form-padding{
+    padding-left: 15px;
+  }
+  #home{
+    display: none;
+  }
+  .search-form-control{
+    width: 160px !important;
+  }
+  .left-caret{
+    display: none; /* for sm devices, only right-caret in timer */
+  }
+}  
+@media (min-width: 992px){
+  .search-form-padding{
+  padding-left: 55px;
+  }
+  #home{
+    display: inline-block;
+  }
+  .search-form-control{
+    width: 180px !important;
+  }
+  .left-caret{
+    display: inline-block; /* Again reset left-caret in higher resolution devices */
+  }
+}
+@media (min-width: 1200px){
+  .search-form-padding{
+    padding-left: 90px;
+  }
+  .search-form-control{
+    width: 340px !important;
+  }
+}
+
+
+.daily-box{
+  margin-bottom: 30px;
+  /*border: 1px solid rgba(200,200,200, 0.4);
+  border-bottom: 1px solid #fff;
+  border-left: 1px solid #fff;
+  border-right: 1px solid #fff;
+  border-radius: 10px;*/
+  padding: 5px;
+  background-color: white;
+}
+
+
+.daily-box .bullet-raja-pencil{
+  font-size: 13px !important;
+  /*position: absolute; it was an option but misbehaves slightly!*/
+  margin-left: -25px;
+  margin-right: 7px; /* change this when margin-left:-25px; is changed */
+  display: inline-block;
+}
+
+.daily-box .entry-box{
+  margin-bottom: 10px;
+  padding-top: 5px;
+}
+
+
+.bullet-raja-pencil:hover{
+  cursor: pointer;
+}
+
+.entry-box .dropdown-menu{
+  background-color: #fbfbfb;
+  top: 30px;
+}
+
+.daily-box .entry-box-title{
+  display: inline-block;
+  color: #222;
+  letter-spacing: .1px;
+  font-weight: 700; 
+}
+
+.daily-box .entry-box b{
+  display: inline-block;
+  color: #777;
+  font-weight: 600; 
+}
+
+.entry-box .note-area{
+  display: inline;
+}
+
+.entry-box .note-area ul{
+  margin-left: 0px;
+  padding-left: 20px;
+  list-style-type: circle;
+}
+
+.entry-box .note-area ol{
+  margin-left: 0px;
+  padding-left: 23px;
+}
+
+
+.date-box{
+  text-align: center;
+  font-style: italic;
+  opacity: 0.8;
+  font-weight: 600;
+  color: #57d;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.daily-box .container-div-for-table{
+  margin-top: 6px;
+  width: 100%;
+}
+
+.daily-box .work-hour-table{
+  width: 100%;
+  margin: 5px auto;
+  font-size: 14px !important;
+  color: #555 !important;
+}
+.daily-box .work-hour-table td{
+  padding: 4px !important;
+}
+.work-hour-table .first-column{
+  width: 60%;
+}
+.work-hour-table .second-column{
+  width: 40%;
+
+}
+
+.notes-area{
+  border-right: 2px solid rgba(200,200,200,0.1);
+}
+
+
+
+[contenteditable="true"] ul, ol{
+  padding-left: 23px !important;
+}
+
+.initial-loading-container{
+  height: 400px;
+}
+@media (max-width: 991px) { /* for xtra-small and small devices */
+  .initial-loading-container{
+     height: 200px;
+  }
+}
+.initial-loading-gif{
+  margin: auto;
+  width: 48px;
+  height: 48px;
+  position: relative;
+  top: 30%;
+}
+
+
+/******* begin of welcome.css ***********/
+
+#welcome-top-section{
+  background-image: url('../images/background-sunrise.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  color: white;
+  padding-top: 30px;
+}
+
+#company-name{
+  display: inline-block;
+}
+
+.personal-dashboard{
+  font-size: 18px;  
+  text-align: right;
+}
+
+
+.signup-heading{
+  font-size: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  margin-top: 70px;
+}
+
+.signup-content{
+  padding: 10px;
+  font-size: 20px;
+}
+
+/******* end of welcome.css ***********/
