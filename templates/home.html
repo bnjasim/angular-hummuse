@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>Hummuse</title>
   <link rel="stylesheet" type="text/css" href="static/assets/bootstrap.css"/>
+  <link rel="stylesheet" href="static/assets/angular-chart.css"/>
   <link rel="stylesheet" type="text/css" href="static/css/mainstyle.css"/>
 </head>
 
@@ -91,7 +92,7 @@
   <div class="left-panel panel-content">
     <a>
       <div class="glyphicon glyphicon-book lef-panel-icons"></div> 
-      Dash Board
+      {{lctrl.projects | json}}
     </a>
   </div> 
 
@@ -150,13 +151,16 @@
 <!-- Main content panel  -->
 <div id="main-panel" class="col-sm-9 col-md-8" ng-controller="MainPanelCtrl as mctrl" hummuse-touch="mctrl.touchMode">
 
-  
-  <!-- This will be destroyed by js -->     
-  <div class="col-md-8 date-box"></div><div class="clearfix"></div>
-       
-  
+ <!-- <canvas id="graph-canvas" class="chart chart-line" chart-data="mctrl.hours" chart-legend="false"
+    chart-labels="mctrl.labels" chart-legend="true" chart-series="mctrl.series"
+    chart-click="mctrl.onClick">
+  </canvas>     -->
+
+  <one-day ng-repeat="d in mctrl.data.json" day="d">
+  </one-day>
 
 </div>
+
 <div id="right-panel" ng-controller="RightPanelCtrl as rctrl" ng-hide="rctrl.isCollapsed" class="col-md-2" ng-swipe-right="rctrl.isCollapsed = true">
 
   <hummuse-timer></hummuse-timer>
@@ -170,8 +174,11 @@
 <script src="static/assets/angular-animate.js" type="text/javascript"></script>
 <script src="static/assets/ui-bootstrap.js" type="text/javascript"></script>
 <script src="static/assets/angular-touch.js" type="text/javascript"></script>
+<script src="static/assets/Chart.js" type="text/javascript"></script>
+<script src="static/assets/angular-chart.js" type="text/javascript"></script>
 <script src="static/js/ui-hummuse.js" type="text/javascript"></script>
 <script src="static/js/hummuse-timer.js" type="text/javascript"></script>
+<script src="static/js/hummuse-data.js" type="text/javascript"></script>
 <script src="static/js/mainjs.js" type="text/javascript"></script>
 <!-- <script src="static/js/MathJax-master/MathJax.js?config=TEX-AMS_HTML" type="text/javascript"></script> 
 <!- change to this later to load from CDN - change JQuery as well

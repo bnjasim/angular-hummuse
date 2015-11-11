@@ -16,6 +16,10 @@ angular.module('hummuse.TimerModule', [])
 
 			var formatTime = function() {
 				var h=0, m=0;
+				if (minutes >= 60){
+						hours += 1;
+						minutes = 0;
+				}
 	    		(minutes<10) ? m = '0'+minutes: m = ''+minutes;
 				(hours<10) ? h = '0'+hours : h = ''+hours;
 				return (h+':'+m);	
@@ -40,7 +44,7 @@ angular.module('hummuse.TimerModule', [])
 					minutes = parseInt($window.localStorage.getItem('totalMinutes'), 10) || 0;
 					
 					$scope.time = formatTime();
-					timerId = $interval(incrementTime, 1000);
+					timerId = $interval(incrementTime, 60000);
 				}
 				else {
 					//console.log('Timer Stopped!');
@@ -78,8 +82,8 @@ angular.module('hummuse.TimerModule', [])
 				else {
 					// Timer was running when browser crashed or closed
 					var elapsed_time = (new Date().getTime() - parseInt($window.localStorage.getItem('startTime'), 10))/1000;
-					var elapsed_h = Math.floor(elapsed_time/60);
-					var elapsed_m = Math.round((elapsed_time - elapsed_h*60)/1);
+					var elapsed_h = Math.floor(elapsed_time/3600);
+					var elapsed_m = Math.round((elapsed_time - elapsed_h*3600)/60);
 					var temp_h = elapsed_h + parseInt($window.localStorage.getItem('totalHours'), 10);
 					var temp_m = elapsed_m + parseInt($window.localStorage.getItem('totalMinutes'), 10);
 					$window.localStorage.setItem('totalHours', temp_h);

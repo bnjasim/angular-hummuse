@@ -200,7 +200,18 @@ body.leave-fixed-space{
   min-height: 500px;
 }
 
-/* Main Panel */
+#graph-canvas {
+  height: 120px !important;
+}
+
+@media (min-width: 991px) { /* for desktops */
+  #graph-canvas {
+    height: 220px !important;
+  }
+
+}
+
+/* End of Main Panel */
 
 #timer{
   margin-top: 20px;
@@ -547,6 +558,15 @@ body.leave-fixed-space{
   margin-bottom: 10px;
   margin-top: 10px;
   font-size: 18px;
+}
+
+.daily-box-title {
+  font-size: 14px;
+  font-style: italic;
+  margin-bottom: 5px;
+  margin-top: 2px;
+  font-weight: bold;
+  opacity: 0.8;
 }
 
 .daily-box .container-div-for-table{

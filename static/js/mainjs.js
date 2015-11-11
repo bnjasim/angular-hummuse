@@ -1,7 +1,8 @@
 angular.module('hummuse-app', ['ui.bootstrap', 'hummuse.CollapseServiceModule',
                                'hummuse.LeftPanelModule', 'hummuse.RightPanelModule', 
                                'hummuse.MainPanelModule', 'hummuse.TimerModule',
-                               'ngAnimate', 'ngTouch'])
+                               'hummuse.DataContainerModule',
+                               'ngAnimate', 'ngTouch', 'chart.js'])
 
 // The buttons to collapse panels in th navigation top-fixed-nav-panel
 .controller('NavigationCtrl', function (leftCollapseService, rightCollapseService) {
@@ -95,8 +96,8 @@ angular.module('hummuse.CollapseServiceModule', [])
 
 // All operations in the leftpanel
 angular.module('hummuse.LeftPanelModule', [])
-
-.controller('LeftPanelCtrl', function (leftCollapseService) {
+// dataContainerService is defined in hummuse-data.js file
+.controller('LeftPanelCtrl', function (leftCollapseService, dataContainerService) {
 	
 	this.isCollapsed = true;
 
@@ -110,6 +111,19 @@ angular.module('hummuse.LeftPanelModule', [])
 			leftCollapseService.setStatus(val);
 		}
 	});			
+
+	this.projects = {"Projects": []};
+	var vm = this;
+	// Init - ajax request for projects
+	dataContainerService.makeProjectsRequest().then(function(response) {
+			vm.projects = response;
+			console.log(response);
+		}, function(error) {
+			console.log(error);
+		});
+	
+	
+	
 
 })
 
@@ -135,7 +149,7 @@ angular.module('hummuse.RightPanelModule', [])
 // The Main (Centre) Panel Module
 angular.module('hummuse.MainPanelModule', [])
 
-.controller('MainPanelCtrl', function (leftCollapseService, rightCollapseService) {
+.controller('MainPanelCtrl', function (leftCollapseService, rightCollapseService, dataContainerService) {
 
 	this.touchMode = false;
 	this.name = 'Binu Jasim';
@@ -152,7 +166,37 @@ angular.module('hummuse.MainPanelModule', [])
 		}
 	});		
 
+	  this.labels = ["23", "24", "25", "26", "27", "28", "29"];
+	  //this.series = ['Series A', 'Series B'];
+	  this.hours = [
+	    [4.5, 9, 8, 8, 5, 5, 4]
+	    
+	  ];
+	  this.onClick = function (points, evt) {
+	    console.log(points, evt);
+	  };
+
+	var vm = this;
+	// Init - request for data
+	dataContainerService.makeDataRequest().then(function(response) {
+		vm.data = response;
+		console.log(response)
+	}, function(error) {
+		console.log(error);
+	})	  
+
 })
+
+.directive('oneDay', function() {
+	return {
+		restrict: 'E',
+		replace: true,
+		require: '^ngController',
+		scope: {day: '='},
+    	templateUrl: "static/partials/oneday.html"
+    }
+})
+
 
 .directive('hummuseTouch', function() {
 	return {
@@ -164,7 +208,7 @@ angular.module('hummuse.MainPanelModule', [])
   				evt.preventDefault();
   				//console.log("touchstart");
   				scope.$apply(function() {
-  					ctrl.touchMode = true; // collapse all open panels, true/false doesn't matter
+  					ctrl.touchMode = false; // collapse all open panels, true/false doesn't matter
   				});	
   			}
 
@@ -180,5 +224,3 @@ angular.module('hummuse.MainPanelModule', [])
     	}
     }
 })
-
-

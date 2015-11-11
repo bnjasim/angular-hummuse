@@ -1,0 +1,21 @@
+{"json": [
+	{ "date": "04-Nov", 
+	  "routines": [{"name": "Exercise", "done": false}, {"name": "Qur'an", "done": true}],
+	  "projects": [{"name": "Hummuse", "hours": 3.5, "notes": "Learned promises and $http"},
+					   {"name": "Git", "hours": 1.5, "notes": "Codecademy new course on Git" }],
+	  "general": "Slept in the after noon"
+	},
+
+	{ "date": "03-Nov", 
+	  "routines": [{"name": "Exercise", "done": true}, {"name": "Qur'an", "done": true}],
+	  "projects": [{"name": "Hummuse", "hours": 3, "notes": "Got first testing services right!"},
+					   {"name": "Bishop", "hours": 0.5, "notes": "Decision theory learned" }],
+	  "general": "Watched football"
+	},
+
+	{ "date": "01-Nov", 
+	  	"routines": [{"name": "Exercise", "done": false}, {"name": "Qur'an", "done": false}],
+		 "projects": [{"name": "Hummuse", "hours": 3, "notes": "Design of UX"}],
+		 "general": "Posted about Kerala in facebook"
+	}
+]}

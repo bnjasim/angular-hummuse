@@ -1,0 +1,24 @@
+<div class='one-day-box'>
+	<div class='date-box'>{{day.date}}</div> 
+	<div class='daily-box'>
+		<div class='projects-box'>
+			<div class="daily-box-title">Projects</div>
+			<div ng-repeat="p in day.projects">
+  				{{p.name}}
+  			</div>	
+		</div>
+
+		<div class='routines-box'>
+			<div class="daily-box-title">Routines</div>
+			<div ng-repeat="r in day.routines">
+  				{{r.name}}
+  			</div>	
+		</div>
+
+		<div class='general-box'>
+			<div class="daily-box-title">general notes</div>
+			{{day.general}}
+		</div>
+	</div>
+
+</div>
