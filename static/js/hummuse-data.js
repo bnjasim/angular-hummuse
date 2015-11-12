@@ -57,6 +57,7 @@ angular.module('hummuse.DataContainerModule', [])
 	// I transform the successful response, unwrapping the application data
 	// from the API response payload.
 	function handleSuccess( response ) {
+		setProjectsStatus(true);
         return( response.data );
     }
 	

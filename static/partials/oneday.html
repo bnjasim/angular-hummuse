@@ -1,23 +1,53 @@
 <div class='one-day-box'>
-	<div class='date-box'>{{day.date}}</div> 
-	<div class='daily-box'>
-		<div class='projects-box'>
-			<div class="daily-box-title">Projects</div>
-			<div ng-repeat="p in day.projects">
-  				{{p.name}}
-  			</div>	
+	<div class='date-box'>
+		<div class="main-edit-one-day">
+			<a ng-click="focusBox()"><div class="glyphicon glyphicon-edit"></div> </a>
 		</div>
-
-		<div class='routines-box'>
-			<div class="daily-box-title">Routines</div>
+		<div class="date">{{day.date}}</div>
+	</div> 
+	<div class='daily-box'>
+		
+		<div class='routines-box' ng-hide="!anyRoutinePresent && !isFocused">
+			<div class="daily-box-header">
+				<div class="daily-box-title">Routines</div>
+				<div class="daily-box-header-extras">
+					<a><div class="glyphicon glyphicon-plus"></div></a>
+					<a class="daily-box-edit"><u>Edit</u></a>
+				</div>	
+			</div>	
 			<div ng-repeat="r in day.routines">
   				{{r.name}}
   			</div>	
 		</div>
 
-		<div class='general-box'>
-			<div class="daily-box-title">general notes</div>
-			{{day.general}}
+		<div class='projects-box' ng-hide="!anyProjectPresent && !isFocused">
+			<div class="daily-box-header">
+				<div class="daily-box-title">Projects</div>
+				<div class="daily-box-header-extras">
+					<a><div class="glyphicon glyphicon-plus"></div></a>
+				</div>	
+			</div>	
+
+			<div ng-repeat="p in day.projects">
+  				{{p.name}}
+  			</div>	
+		</div>
+
+		<div class='general-box' ng-hide="!generalNotePresent && !isFocused">
+			<div class="daily-box-header">
+				<div class="daily-box-title">general notes</div>
+				<div class="daily-box-header-extras" ng-hide="isFocused">
+					<a class="daily-box-edit"><u>Edit</u></a>
+				</div>	
+			</div>	
+
+			<div ng-show="isFocused">
+				<textarea class="general-note" ng-model="text_area_model"></textarea>
+				<button ng-click="saveGeneral()" type="button" class="btn btn-primary">Save</button>
+				<button ng-click="cancelGeneral()" type="button" class="btn btn-default">Cancel</button>
+			</div>
+
+			<div ng-hide="isFocused">{{day.general}}</div>
 		</div>
 	</div>
 

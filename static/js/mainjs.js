@@ -180,20 +180,52 @@ angular.module('hummuse.MainPanelModule', [])
 	// Init - request for data
 	dataContainerService.makeDataRequest().then(function(response) {
 		vm.data = response;
-		console.log(response)
+		window.data = response;
+		//console.log(response)
 	}, function(error) {
 		console.log(error);
 	})	  
 
 })
 
+// ng-repeat day in data
 .directive('oneDay', function() {
 	return {
 		restrict: 'E',
 		replace: true,
-		require: '^ngController',
-		scope: {day: '='},
-    	templateUrl: "static/partials/oneday.html"
+		//require: '^ngController',
+		scope: true,
+    	templateUrl: "static/partials/oneday.html",
+    	controller: ['$scope', function($scope) {
+    		$scope.isFocused = false; // the whole one-day focus
+    		$scope.focusBox = function() {
+    			$scope.isFocused = true;
+    		}
+    		//console.log($scope.day.routines.length);
+    		// watching just 'day' doesn't work!
+    		$scope.$watch('day.routines', function() {
+    			//console.log('changed');
+    			$scope.anyRoutinePresent = !!($scope.day.routines.length);	
+    		})
+    		$scope.$watch('day.projects', function() {
+    			//console.log('changed');
+    			$scope.anyProjectPresent = !!($scope.day.projects.length);	
+    		})
+    		$scope.$watch('day.general', function() {
+    			//console.log('changed');
+    			$scope.generalNotePresent = !!($scope.day.general);	// empty string in note area
+    			$scope.text_area_model = $scope.day.general; // npt required, but maybe
+    		})
+
+    		$scope.saveGeneral = function() {
+    			$scope.day.general = $scope.text_area_model;
+    			$scope.isFocused = false;
+    		}
+    		$scope.cancelGeneral = function() {
+    			//$scope.day.general = $scope.text_area_model;
+    			$scope.isFocused = false;
+    		}
+    	}]
     }
 })
 
