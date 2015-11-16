@@ -6446,6 +6446,7 @@ angular.module('ui.bootstrap.timepicker', [])
   function refresh(keyboardChange) {
     makeValid();
     ngModelCtrl.$setViewValue(new Date(selected));
+    //console.log('Refreshed ' + $scope.$parent.mytime);
     updateTemplate(keyboardChange);
   }
 

@@ -1,5 +1,5 @@
 {
-  "Routines": ["Exercise", "Qur'an"],
-  "Projects": ["Hummuse", "Bishop", "Git"],
-  "General": ["No Power Today"]
+  "routines": ["Exercise", "Qur'an"],
+  "projects": ["Hummuse", "Bishop", "Git"],
+  "general": ["No Power Today"]
 }

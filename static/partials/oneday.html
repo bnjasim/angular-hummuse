@@ -1,25 +1,50 @@
 <div class='one-day-box'>
+<!-- Date Header -->
 	<div class='date-box'>
-		<div class="main-edit-one-day">
-			<a ng-click="focusBox()"><div class="glyphicon glyphicon-edit"></div> </a>
+		<div class="main-edit-one-day" uib-dropdown>
+			<a uib-dropdown-toggle><div class="glyphicon glyphicon-edit"></div> </a>
+			<ul class="uib-dropdown-menu" aria-labelledby="edit-dropdown">
+		        <li>
+        		  <a  ng-click="focusBox()">Edit</a>
+        		</li>
+      		</ul>
+
 		</div>
 		<div class="date">{{day.date}}</div>
-	</div> 
+	</div>
+
 	<div class='daily-box'>
-		
+<!-- Routines -->		
 		<div class='routines-box' ng-hide="!anyRoutinePresent && !isFocused">
 			<div class="daily-box-header">
 				<div class="daily-box-title">Routines</div>
 				<div class="daily-box-header-extras">
-					<a><div class="glyphicon glyphicon-plus"></div></a>
-					<a class="daily-box-edit"><u>Edit</u></a>
+					<a ng-show="isFocused"><div class="glyphicon glyphicon-plus"></div></a>
+					<!--<a ng-click="focusBox()" class="daily-box-edit" ng-hide="isFocused"><u>Edit</u></a> main edit is enough -->
 				</div>	
 			</div>	
 			<div ng-repeat="r in day.routines">
-  				{{r.name}}
+  				<div class="routine-single"  ng-show="isFocused">
+  					<div class="routine-circular-thumbnail"></div>
+  					<div class="routine-name my-font-heading">{{r.name}}</div>
+  					<div class="routine-checkbox">
+  						<input type="checkbox" ng-model="r.done"/>
+  					</div>
+  				</div>
+
+  				<div class="routine-single" ng-hide="isFocused">
+  					<div class="routine-circular-thumbnail"></div>
+  					<div class="routine-name my-font-heading">{{r.name}}</div>
+  					<div class="routine-checkbox">
+  						<div ng-class="{'glyphicon glyphicon-ok':r.done, 'glyphicon glyphicon-remove checkbox-remove':!r.done}"></div>
+  					</div>
+  				</div>
+
   			</div>	
+  			<button ng-show="isFocused" ng-click="saveData()" type="button" class="btn btn-default routine-button">Done</button>
 		</div>
 
+<!-- Projects -->
 		<div class='projects-box' ng-hide="!anyProjectPresent && !isFocused">
 			<div class="daily-box-header">
 				<div class="daily-box-title">Projects</div>
@@ -28,23 +53,40 @@
 				</div>	
 			</div>	
 
-			<div ng-repeat="p in day.projects">
-  				{{p.name}}
+			<div ng-repeat="p in day.projects" ng-controller="projectController">
+				
+				<div class="project-single"  ng-show="isFocused">
+  					<div class="project-circular-thumbnail"></div>
+  					<div class="project-name my-font-heading">{{p.name}}</div>
+  					
+  					<!-- TimePicker Directive -->
+  					 <uib-timepicker ng-model="mytime" show-meridian="false" minute-step="15" class="project-timepicker"></uib-timepicker>
+  					 
+  				</div>
+
+  				<div class="project-single" ng-hide="isFocused">
+  					<div class="project-circular-thumbnail"></div>
+  					<div class="project-name my-font-heading">{{p.name}}</div>
+  					<div class="project-hours">{{p.hours | hoursminutes}}</div>
+
+  					<div class="project-notes">{{p.notes}}</div>
+  				</div>
   			</div>	
 		</div>
 
+<!-- General Notes -->
 		<div class='general-box' ng-hide="!generalNotePresent && !isFocused">
 			<div class="daily-box-header">
 				<div class="daily-box-title">general notes</div>
 				<div class="daily-box-header-extras" ng-hide="isFocused">
-					<a class="daily-box-edit"><u>Edit</u></a>
+					<a ng-click="focusGeneral()" class="daily-box-edit"><u>Edit</u></a>
 				</div>	
 			</div>	
 
 			<div ng-show="isFocused">
-				<textarea class="general-note" ng-model="text_area_model"></textarea>
-				<button ng-click="saveGeneral()" type="button" class="btn btn-primary">Save</button>
-				<button ng-click="cancelGeneral()" type="button" class="btn btn-default">Cancel</button>
+				<textarea class="general-note" ng-model="day.general" hummuse-focus="focus_general"></textarea>
+				<button ng-click="saveData()" type="button" class="btn btn-primary">Save</button>
+				<!--<button ng-click="cancelGeneral()" type="button" class="btn btn-default">Cancel</button> no cancel for the time being-->
 			</div>
 
 			<div ng-hide="isFocused">{{day.general}}</div>

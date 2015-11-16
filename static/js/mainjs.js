@@ -187,6 +187,20 @@ angular.module('hummuse.MainPanelModule', [])
 	})	  
 
 })
+// A controller to tap into the scope of ng-repeat over projects
+.controller('projectController', function($scope) {
+	$scope.mytime = new Date();
+	var h = $scope.p.hours;
+	var hrs = Math.floor(h);
+	var mins = Math.round((h-hrs)*60);
+	// set the initial time from the json data
+	$scope.mytime.setHours(hrs);
+	$scope.mytime.setMinutes(mins);
+
+	$scope.$watch('mytime', function() {
+		$scope.p.hours = $scope.mytime.getHours() + $scope.mytime.getMinutes()/60;
+	})
+})
 
 // ng-repeat day in data
 .directive('oneDay', function() {
@@ -197,9 +211,16 @@ angular.module('hummuse.MainPanelModule', [])
 		scope: true,
     	templateUrl: "static/partials/oneday.html",
     	controller: ['$scope', function($scope) {
+    		console.log('a new scope created!');
     		$scope.isFocused = false; // the whole one-day focus
     		$scope.focusBox = function() {
     			$scope.isFocused = true;
+    		}
+
+    		$scope.focus_general = false;
+    		$scope.focusGeneral = function() {
+    			$scope.isFocused = true;
+    			$scope.focus_general = true;
     		}
     		//console.log($scope.day.routines.length);
     		// watching just 'day' doesn't work!
@@ -214,21 +235,36 @@ angular.module('hummuse.MainPanelModule', [])
     		$scope.$watch('day.general', function() {
     			//console.log('changed');
     			$scope.generalNotePresent = !!($scope.day.general);	// empty string in note area
-    			$scope.text_area_model = $scope.day.general; // npt required, but maybe
+    			//$scope.text_area_model = $scope.day.general; // not required, but maybe
     		})
 
-    		$scope.saveGeneral = function() {
-    			$scope.day.general = $scope.text_area_model;
-    			$scope.isFocused = false;
-    		}
-    		$scope.cancelGeneral = function() {
+    		$scope.saveData = function() {
     			//$scope.day.general = $scope.text_area_model;
     			$scope.isFocused = false;
+    			$scope.focus_general = false;
     		}
+    		/*$scope.cancelGeneral = function() {
+    			//$scope.day.general = $scope.text_area_model;
+    			$scope.isFocused = false;
+    			$scope.focus_general = false;
+    		}*/
     	}]
     }
 })
+// focus textarea - so automatically scroll down appropriately
+.directive('hummuseFocus', function($timeout) {
+	return {
+		restrict: 'A',
+    	link: function(scope, element, attrs) {
+    		scope.$watch(attrs.hummuseFocus, function(focus) {
 
+    			if (focus) {
+    				$timeout(function(){element[0].focus()},0);
+    			}
+    		})
+    	}
+    }
+})
 
 .directive('hummuseTouch', function() {
 	return {
@@ -256,3 +292,11 @@ angular.module('hummuse.MainPanelModule', [])
     	}
     }
 })
+// converts 3.5 to 3h 30m
+.filter('hoursminutes', function() {
+  return function(input) {
+    var h = Math.floor(input);
+    var m = Math.round((input - h)*60);
+    return h+'h '+m+'m';
+  };
+});

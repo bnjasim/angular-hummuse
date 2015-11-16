@@ -86,69 +86,31 @@
 {% raw %} <!-- Avoided by jinja and swig -->
 <div class="container">
 <div class="row">
-<!-- Left Panel - tablets and desktops but fixed leftslider in mobiles -->
+
+
+<!-- LEFT PANEL - tablets and desktops but fixed leftslider in mobiles -->
 <div id="left-panel" ng-controller="LeftPanelCtrl as lctrl" ng-hide="lctrl.isCollapsed" class="col-sm-3 col-md-2" ng-swipe-left="lctrl.isCollapsed = true"> 
 
-  <div class="left-panel panel-content">
-    <a>
-      <div class="glyphicon glyphicon-book lef-panel-icons"></div> 
-      {{lctrl.projects | json}}
-    </a>
-  </div> 
+<div class="row"> <!-- get rid off padding -->
 
-  <div class="left-panel panel-content">
-    <a id="add-project">
-      <div class="glyphicon glyphicon-plus lef-panel-icons"></div> 
-      Add A Project 
-    </a>
-  </div>
+    <div class="left-routines-header">Routines</div>
+    
+    <div ng-repeat="r in lctrl.projects.routines">
+      <div class="left-content"><a>{{r}}</a></div>
+    </div>  
+
+    <div class="left-projects-header">Projects</div>
+    
+    <div ng-repeat="p in lctrl.projects.projects">
+      <div class="left-content"><a>{{p}}</a></div>
+    </div>  
   
-  <div class="left-panel panel-content">
-    <a id="edit-projects">
-      <div class="glyphicon glyphicon-edit lef-panel-icons"></div> 
-      Edit Projects
-    </a>
-  </div>  
-
-  <div class="panel-content"> 
-   <div class="panel-header">Make Entry
-   <!-- <div class="add-near-project" id="add-project-home"><a href="#">ADD</a></div> -->
-   </div>
-
-   <div class="left-panel panel-content">
-      <a id="add-work">
-        <div class="glyphicon glyphicon-pencil lef-panel-icons"></div> 
-        Add Work
-      </a>
-   </div> 
-
-   <div class="left-panel panel-content">
-      <a id="add-event">
-        <div class="glyphicon glyphicon-paperclip lef-panel-icons"></div> 
-        Add Event
-      </a>
-   </div> 
-  
- 
-  </div> 
-
-  <div id="projects-panel" class="panel-content">	
-	 <div class="panel-header">Projects
-	 <!-- <div class="add-near-project" id="add-project-home"><a href="#">ADD</a></div> -->
-	 </div>
-	 <ul class="left-panel-ul">
-	  
-	  <!--<li><a>All</a></li>
-	  <li><a>Data Science</a></li>
-	  <li><a>NLP Teaching</a></li>
-	  <li><a>Quora</a></li>
-    -->
-	 </ul>
-  </div>
-
+</div> 
 </div>
 
-<!-- Main content panel  -->
+
+
+<!-- MAIN PANEL  -->
 <div id="main-panel" class="col-sm-9 col-md-8" ng-controller="MainPanelCtrl as mctrl" hummuse-touch="mctrl.touchMode">
 
  <!-- <canvas id="graph-canvas" class="chart chart-line" chart-data="mctrl.hours" chart-legend="false"
@@ -161,6 +123,9 @@
 
 </div>
 
+
+
+<!-- RIGHT PANEL -->
 <div id="right-panel" ng-controller="RightPanelCtrl as rctrl" ng-hide="rctrl.isCollapsed" class="col-md-2" ng-swipe-right="rctrl.isCollapsed = true">
 
   <hummuse-timer></hummuse-timer>
@@ -176,7 +141,6 @@
 <script src="static/assets/angular-touch.js" type="text/javascript"></script>
 <script src="static/assets/Chart.js" type="text/javascript"></script>
 <script src="static/assets/angular-chart.js" type="text/javascript"></script>
-<script src="static/js/ui-hummuse.js" type="text/javascript"></script>
 <script src="static/js/hummuse-timer.js" type="text/javascript"></script>
 <script src="static/js/hummuse-data.js" type="text/javascript"></script>
 <script src="static/js/mainjs.js" type="text/javascript"></script>
