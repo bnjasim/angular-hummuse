@@ -25,19 +25,21 @@
 			</div>	
 			<div ng-repeat="r in day.routines">
   				<div class="routine-single"  ng-show="isFocused">
-  					<div class="routine-circular-thumbnail"></div>
-  					<div class="routine-name my-font-heading">{{r.name}}</div>
   					<div class="routine-checkbox">
   						<input type="checkbox" ng-model="r.done"/>
   					</div>
+
+  					<div class="routine-name my-font-heading">{{r.name}}</div>
+  					
   				</div>
 
   				<div class="routine-single" ng-hide="isFocused">
-  					<div class="routine-circular-thumbnail"></div>
-  					<div class="routine-name my-font-heading">{{r.name}}</div>
   					<div class="routine-checkbox">
   						<div ng-class="{'glyphicon glyphicon-ok':r.done, 'glyphicon glyphicon-remove checkbox-remove':!r.done}"></div>
   					</div>
+
+  					<div class="routine-name my-font-heading">{{r.name}}</div>
+  					
   				</div>
 
   			</div>	
@@ -57,10 +59,14 @@
 				
 				<div class="project-single"  ng-show="isFocused">
   					<div class="project-circular-thumbnail"></div>
-  					<div class="project-name my-font-heading">{{p.name}}</div>
+  					<div class="project-name my-font-heading">{{p.name}}
+  					<div class="project-direction">(hours,minutes)</div>
+  					</div>
   					
   					<!-- TimePicker Directive -->
   					 <uib-timepicker ng-model="mytime" show-meridian="false" minute-step="15" class="project-timepicker"></uib-timepicker>
+
+  					 <div class="textarea-div" contenteditable></div>
   					 
   				</div>
 
