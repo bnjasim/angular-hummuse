@@ -1,30 +1,33 @@
 <div class='one-day-box'>
 <!-- Date Header -->
 	<div class='date-box'>
-		<div class="main-edit-one-day" uib-dropdown>
-			<a uib-dropdown-toggle><div class="glyphicon glyphicon-edit"></div> </a>
-			<ul class="uib-dropdown-menu" aria-labelledby="edit-dropdown">
-		        <li>
-        		  <a  ng-click="focusBox()">Edit</a>
-        		</li>
-      		</ul>
-
-		</div>
 		<div class="date">{{day.date}}</div>
 	</div>
 
 	<div class='daily-box'>
-<!-- Routines -->		
-		<div class='routines-box' ng-hide="!anyRoutinePresent && !isFocused">
+
+		<!-- Routines -->		
+		<div class='routines-box'>
+			
 			<div class="daily-box-header">
 				<div class="daily-box-title">Routines</div>
-				<div class="daily-box-header-extras">
-					<a ng-show="isFocused"><div class="glyphicon glyphicon-plus"></div></a>
-					<!--<a ng-click="focusBox()" class="daily-box-edit" ng-hide="isFocused"><u>Edit</u></a> main edit is enough -->
-				</div>	
+				
+				<div class="ellipsis-right" uib-dropdown uib-dropdown-toggle>
+					<div class="glyphicon glyphicon-option-horizontal"></div></a>
+
+					<ul class="uib-dropdown-menu pull-right" aria-labelledby="edit-dropdown">
+				      <li>
+				        <a ng-click="editRoutines(true)">
+				        <div class="glyphicon glyphicon-edit dropdown-icon"></div>Edit Routines</a>
+				      </li>
+				      <li><a ng-click=""><div class="glyphicon glyphicon-plus dropdown-icon"></div>Add A New Routine</a></li>
+      				</ul>
+
+				</div>
 			</div>	
+
 			<div ng-repeat="r in day.routines">
-  				<div class="routine-single"  ng-show="isFocused">
+  				<div class="routine-single"  ng-show="edit_routines">
   					<div class="routine-checkbox">
   						<input type="checkbox" ng-model="r.done"/>
   					</div>
@@ -33,7 +36,7 @@
   					
   				</div>
 
-  				<div class="routine-single" ng-hide="isFocused">
+  				<div class="routine-single" ng-hide="edit_routines">
   					<div class="routine-checkbox">
   						<div ng-class="{'glyphicon glyphicon-ok':r.done, 'glyphicon glyphicon-remove checkbox-remove':!r.done}"></div>
   					</div>
@@ -43,7 +46,7 @@
   				</div>
 
   			</div>	
-  			<button ng-show="isFocused" ng-click="saveData()" type="button" class="btn btn-default routine-button">Done</button>
+  			<button ng-show="edit_routines" ng-click="editRoutines(false)" type="button" class="btn btn-success routine-button">Done</button>
 		</div>
 
 <!-- Projects -->

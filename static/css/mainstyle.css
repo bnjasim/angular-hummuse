@@ -457,8 +457,8 @@ body.leave-fixed-space{
   border: 1px solid rgba(200,200,200, 0.4);
   border-bottom: 1px solid #fff;
   border-left: 1px solid #fff;
-  border-right: 1px solid #fff;
-  border-radius: 10px;*/
+  border-right: 1px solid #fff;*/
+  border-radius: 2px;
   padding: 5px 10px;
   background-color: white;
   border-top: 1px solid #e2e2e2;
@@ -639,8 +639,32 @@ body.leave-fixed-space{
   height: 75px;
 }
 
+.ellipsis-right {
+	display: inline-block;
+	float: right;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-right: 10px;
+	color: rgba(130,130,130,0.8);
+	font-size: 18px;
+	width: 30px;
+}
+
+.ellipsis-right:hover {
+	cursor: pointer;
+}
+
+.dropdown-icon{
+  color: #777;
+  opacity: 0.8;
+  font-size: 11px;
+  margin-left: -15px;
+  margin-right: 7px;
+}
 
 
+
+/* Text Editor */
 
 [contenteditable="true"] ul, ol{
   padding-left: 23px !important;
@@ -819,3 +843,5 @@ hr{
 .show-all-icons-dropdown-menu .btn{
   border: 0px !important;
 }
+
+

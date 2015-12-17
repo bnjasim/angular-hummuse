@@ -212,6 +212,13 @@ angular.module('hummuse.MainPanelModule', [])
     	templateUrl: "static/partials/oneday.html",
     	controller: ['$scope', function($scope) {
     		console.log('a new scope created!');
+    			
+    		$scope.edit_routines = false;
+
+    		$scope.editRoutines = function(val) {
+    			$scope.edit_routines = val;
+    		}
+
     		$scope.isFocused = false; // the whole one-day focus
     		$scope.focusBox = function() {
     			$scope.isFocused = true;
