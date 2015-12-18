@@ -75,6 +75,7 @@
 
 			<div ng-repeat="p in day.projects" ng-controller="projectController">
 				
+				<!-- Edit Mode -->
 				<div class="project-single"  ng-show="edit_this_project">
   					<div class="project-circular-thumbnail"></div>
   					<div class="project-name my-font-heading">{{p.name}}
@@ -82,12 +83,16 @@
   					</div>
   					
   					<!-- TimePicker Directive -->
-  					 <uib-timepicker ng-model="mytime" show-meridian="false" minute-step="15" class="project-timepicker"></uib-timepicker>
+  					<uib-timepicker ng-model="mytime" show-meridian="false" minute-step="15" class="project-timepicker"></uib-timepicker>
 
-  					 <div class="textarea-div" contenteditable></div>
+  					<angular-rte text-content="p.notes" submit-trigger="submit_trigger"></angular-rte>
+  					<div class="textarea-footer">
+					  <button class="btn btn-primary" type="button" ng-click="submitTrigger()">OK</button>
+					</div>
   					 
   				</div>
 
+  				<!-- Non-Edit Mode -->
   				<div class="project-single" ng-hide="edit_this_project">
   					
   					<div class="project-thumbnail-icon" uib-dropdown uib-dropdown-toggle>
@@ -107,15 +112,11 @@
       				  </ul>
 
   					</div>
-
-
-
-
   					  
   					<div class="project-name my-font-heading">{{p.name}}</div>
   					<div class="project-hours">{{p.hours | hoursminutes}}</div>
 
-  					<div class="project-notes">{{p.notes}}</div>
+  					<div class="project-notes" ng-bind-html="p.notes | sanitize"></div>
   				</div>
   			</div>	
 		</div>

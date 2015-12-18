@@ -2,6 +2,7 @@ angular.module('hummuse-app', ['ui.bootstrap', 'hummuse.CollapseServiceModule',
                                'hummuse.LeftPanelModule', 'hummuse.RightPanelModule', 
                                'hummuse.MainPanelModule', 'hummuse.TimerModule',
                                'hummuse.DataContainerModule',
+                               'hummuse.texteditor', 'hummuse.paint',
                                'ngAnimate', 'ngTouch', 'chart.js'])
 
 // The buttons to collapse panels in th navigation top-fixed-nav-panel
@@ -202,10 +203,19 @@ angular.module('hummuse.MainPanelModule', [])
 		$scope.p.hours = $scope.mytime.getHours() + $scope.mytime.getMinutes()/60;
 	})
 
-	// manage edit/focus
+	// manage edit of individual projects
 	$scope.edit_this_project = false;
 	$scope.editThisProject = function(val) {
 		$scope.edit_this_project = val;
+	}
+
+	// submit button of textarea of angular-rte
+	$scope.submit_trigger = false;
+
+	$scope.submitTrigger = function() {
+		$scope.submit_trigger = true;
+		// also change the edit mode back to false
+		$scope.editThisProject(false);
 	}
 
 })
@@ -249,16 +259,7 @@ angular.module('hummuse.MainPanelModule', [])
     			//$scope.text_area_model = $scope.day.general; // not required, but maybe
     		})
 
-    		$scope.saveData = function() {
-    			//$scope.day.general = $scope.text_area_model;
-    			$scope.isFocused = false;
-    			$scope.focus_general = false;
-    		}
-    		/*$scope.cancelGeneral = function() {
-    			//$scope.day.general = $scope.text_area_model;
-    			$scope.isFocused = false;
-    			$scope.focus_general = false;
-    		}*/
+    		
     	}]
     }
 })
