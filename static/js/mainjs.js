@@ -189,6 +189,7 @@ angular.module('hummuse.MainPanelModule', [])
 })
 // A controller to tap into the scope of ng-repeat over projects
 .controller('projectController', function($scope) {
+	// manage the hours of work
 	$scope.mytime = new Date();
 	var h = $scope.p.hours;
 	var hrs = Math.floor(h);
@@ -200,6 +201,13 @@ angular.module('hummuse.MainPanelModule', [])
 	$scope.$watch('mytime', function() {
 		$scope.p.hours = $scope.mytime.getHours() + $scope.mytime.getMinutes()/60;
 	})
+
+	// manage edit/focus
+	$scope.edit_this_project = false;
+	$scope.editThisProject = function(val) {
+		$scope.edit_this_project = val;
+	}
+
 })
 
 // ng-repeat day in data
@@ -211,23 +219,19 @@ angular.module('hummuse.MainPanelModule', [])
 		scope: true,
     	templateUrl: "static/partials/oneday.html",
     	controller: ['$scope', function($scope) {
+    		
     		console.log('a new scope created!');
     			
+    		// Routines
     		$scope.edit_routines = false;
-
     		$scope.editRoutines = function(val) {
     			$scope.edit_routines = val;
     		}
 
-    		$scope.isFocused = false; // the whole one-day focus
-    		$scope.focusBox = function() {
-    			$scope.isFocused = true;
-    		}
-
-    		$scope.focus_general = false;
-    		$scope.focusGeneral = function() {
-    			$scope.isFocused = true;
-    			$scope.focus_general = true;
+    		// Notes
+    		$scope.edit_notes = false;
+    		$scope.editNotes = function(val) {
+    			$scope.edit_notes = val;
     		}
     		//console.log($scope.day.routines.length);
     		// watching just 'day' doesn't work!
