@@ -13,7 +13,8 @@ angular.module('hummuse.texteditor', ['ui.bootstrap', 'hummuse.paint'])
 // Service to share variable b/w paint and texteditor
 .factory('paintService', function() {
 	var paintActivate = false;
-	var paintURL = '';
+	var paintURL;
+	var okButton = false;
 	
 	var getStatus =  function() {
 		return paintActivate;
@@ -30,8 +31,16 @@ angular.module('hummuse.texteditor', ['ui.bootstrap', 'hummuse.paint'])
 	var setURL = function(url) {
 		paintURL = url;
 	}
+
+	var getOkButton = function() {
+		return okButton;
+	}
+
+	var setOkButton = function(val) {
+		okButton = val;
+	}
 	
-	return { getStatus:getStatus, setStatus:setStatus, setURL:setURL, getURL:getURL};
+	return { getStatus:getStatus, setStatus:setStatus, setURL:setURL, getURL:getURL, getOkButton:getOkButton, setOkButton:setOkButton};
 })
 
 
@@ -86,41 +95,55 @@ angular.module('hummuse.texteditor', ['ui.bootstrap', 'hummuse.paint'])
 		// if OK is clicked from the outside of directive (from the parent scope)
 		scope.$watch('trigger', function(val) {
 			if (val) {
+				//console.log('Triggered copy');
 				scope.content = text_area.html();
 				trigger = false;		
 			}
 		});
 
+		var watch_paint = angular.noop; // we can un-watch inside callback in watch 
 		scope.launchPaint = function() {
-			if (!paintService.getStatus()) {
+			if (!paintService.getStatus()) { // irrelevant
 				paintService.setStatus(true);
-				//console.log('text new paint : '+paintService.getStatus())
+				
+				// Watch only when paint is launched
+				// Insert Paint - watch for change in status. If status is changed to false, insert if okButton is true
+				console.log('watching!');
+				watch_paint = scope.$watch(paintService.getStatus, function(paint_status) {
+
+					//console.log('watch Found the callback')
+					if (!paint_status) { // insert only if paint is closed!
+					  if(paintService.getOkButton()) { // insert only if OK button is pressed!
+						console.log('Insert paint!')
+						console.log(scope.content);
+						var node = document.createElement('img');
+						node.setAttribute('class', 'inserted-image');
+						node.src = paintService.getURL();
+
+						text_area[0].focus();	
+		    			var sel = window.getSelection();
+		    			if (sel.getRangeAt && sel.rangeCount) {
+		    				var range = sel.getRangeAt(0);
+		        			range.collapse(false);
+
+		        			range.insertNode(node);
+		       				range.setStartAfter(node);
+		       				range = range.cloneRange();
+		           			sel.removeAllRanges();
+		           			sel.addRange(range);	
+		    			}
+		    		  }	
+		    		console.log('un-watch!');
+		    		watch_paint(); // un-watch	
+					}
+
+					
+				});
+
 			}
 		}
 
-		// Insert Paint - watch for OK in paintangular
-		scope.$watch(paintService.getURL, function(paintURL) {
-			if (paintURL) {
-				var node = document.createElement('img');
-				node.setAttribute('class', 'inserted-image');
-				node.src = paintURL;
 
-				text_area[0].focus();	
-    			var sel = window.getSelection();
-    			if (sel.getRangeAt && sel.rangeCount) {
-    				var range = sel.getRangeAt(0);
-        			range.collapse(false);
-
-        			range.insertNode(node);
-       				range.setStartAfter(node);
-       				range = range.cloneRange();
-           			sel.removeAllRanges();
-           			sel.addRange(range);
-               		
-    			}
-    			
-			}
-		});
 
 		scope.insertImage = function() {
 			var imageURL = window.prompt('Image URL');

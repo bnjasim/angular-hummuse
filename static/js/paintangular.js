@@ -19,17 +19,17 @@ angular.module('hummuse.paint', [])
 
 			$scope.setColor = function(c) {
 				$scope.color = c;
-				console.log(c);
+				//console.log(c);
 			}
 
 			$scope.setTool = function(t) {
 				$scope.tool = t;
-				console.log(t);
+				//console.log(t);
 			}
 
 			$scope.chooseSize = function(s) {
 				$scope.size = s;
-				console.log(s);
+				//console.log(s);
 			}			
 
 			$scope.cls = function() {
@@ -89,15 +89,19 @@ angular.module('hummuse.paint', [])
 			scope.cancelPaint = function() {
 				// set the paint to close/display:none
 				// remove modal-open class
+				paintService.setOkButton(false); // don't insert paint
 				paintService.setStatus(false);
 			}
 
 			scope.okPaint = function() {
 				// close the paint, but copy the image to the text editor  as well
+				paintService.setOkButton(true); // yes to insert paint
+				
 				var canvas = element.find('canvas')[0]; // jqlite find only with tags, no id/class
 				paintService.setURL(canvas.toDataURL()); 
-
+				// the order I think is important! we are watching for status, so url should be set beforehand to be inserted
 				paintService.setStatus(false);	
+				
 			}
 
 		}
@@ -474,7 +478,7 @@ angular.module('hummuse.paint', [])
 
 				start_mouse.x = mouse.x;
 		    	start_mouse.y = mouse.y;
-		    	console.log('mousedown: '+mouse.x+' '+mouse.y);
+		    	//console.log('mousedown: '+mouse.x+' '+mouse.y);
 		    	temp_ctx.clearRect(0, 0, temp_canvas.width, temp_canvas.height);
 
 		    	// Assign color & size
@@ -800,10 +804,10 @@ angular.module('hummuse.paint', [])
 			  // for mozilla, hold first finger and draw with the second
 			  if (e.touches.length > 1) { 
 			  	touch = e.touches[1];
-			  	console.log('second finger');
+			  	//console.log('second finger');
 			  }
-			  else
-			  	console.log('one finger only');
+			  //else
+			  	//console.log('one finger only');
 			  
 		  	  var mouseEvent = new MouseEvent("mousemove", {
 		      	clientX: touch.clientX,//typeof touch.offsetX !== 'undefined' ? touch.offsetX : touch.layerX,
@@ -823,7 +827,7 @@ angular.module('hummuse.paint', [])
 
 			dragger.addEventListener('mousedown', function(e) {
 				e.preventDefault();
-				console.log('Event listener added');
+				//console.log('Event listener added');
 				// it can't be dragger.addEventListener - it only decrease in size
 				document.addEventListener('mousemove', resize_canvas, false);
 			
@@ -838,7 +842,7 @@ angular.module('hummuse.paint', [])
 			var resize_canvas = function(e) {
 				var rect = temp_canvas.getBoundingClientRect();
 				var height = e.clientY - rect.top;
-				console.log('height '+height)
+				//console.log('height '+height)
 
 				// keep the original picture as changing dimensions of the 
 				// canvas removes the image
