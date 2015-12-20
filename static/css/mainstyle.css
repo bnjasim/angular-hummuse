@@ -519,7 +519,7 @@ body.leave-fixed-space{
 }
 
 .projects-box {
-  margin-top: 10px;
+  margin-top: 20px;
   padding-bottom: 5px;
   /* border-bottom: 1px solid #e2e2e2; */
 
@@ -528,7 +528,7 @@ body.leave-fixed-space{
 
 
 .general-box {
-  margin-top: 0px;
+  margin-top: 20px;
 }
 
 .general-single {
@@ -561,7 +561,7 @@ body.leave-fixed-space{
 
 .routines-box {
   padding-bottom: 20px;
-  border-bottom: 1px solid rgba(200,200,200,0.3); 
+  /*border-bottom: 1px solid rgba(200,200,200,0.3); */
 }
 
 .routine-single {
@@ -579,7 +579,7 @@ body.leave-fixed-space{
 .project-single {
   margin-top: 20px;
   padding-bottom: 20px;
-  border-bottom: 1px solid rgba(200,200,200,0.3); 
+/*  border-bottom: 1px solid rgba(200,200,200,0.3); */
 }
 
 .routine-button {
@@ -662,28 +662,6 @@ body.leave-fixed-space{
 
 
 
-/* Text Editor */
-
-[contenteditable="true"] ul, ol{
-  padding-left: 23px !important;
-}
-
-.initial-loading-container{
-  height: 400px;
-}
-@media (max-width: 991px) { /* for xtra-small and small devices */
-  .initial-loading-container{
-     height: 200px;
-  }
-}
-.initial-loading-gif{
-  margin: auto;
-  width: 48px;
-  height: 48px;
-  position: relative;
-  top: 30%;
-}
-
 
 /******* begin of welcome.css ***********/
 
@@ -721,125 +699,5 @@ body.leave-fixed-space{
 /******* end of welcome.css ***********/
 
 
-
-
-/* Text Area - Note-Area */
-/* Text Area - with Div */
-.textarea-div {
-    height: 240px;
-    padding: 4px 6px 4px 6px;
-    
-    background-color: #ffffff;
-    border: 1px solid #cccccc;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-       -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
-       -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
-         -o-transition: border linear 0.2s, box-shadow linear 0.2s;
-            transition: border linear 0.2s, box-shadow linear 0.2s;
-    -webkit-border-radius: 6px;
-       -moz-border-radius: 6px;
-            border-radius: 0px;
-    overflow:auto;
-}
-.textarea-div:focus {
-    border-color: rgba(82, 168, 236, 0.8);
-    outline: 0;
-    outline: thin dotted \9;
-    /* IE6-9 */
-
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
-       -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
-}
-
-/* Allows bootstrap class="btn-group" to be properly responsive */
-.textarea-icon-group .btn-group {
-    margin-left: 0px;
-    margin-right: 0px;
-}
-.textarea-icon-group .btn-group:last-child {
-    margin-right: 0;
-}
-
-.textarea-icon-group{
-  background-color: #fbfbfb;
-  border-bottom: 2px solid #cccccc;
-}
-
-.textarea-icon-group .btn-group .btn{
-  background-color: #fbfbfb;
-  border-radius: 0px;
-  border: 1px solid rgba(200,150,200, 0.4);
-  padding: 3px 7px;
-  color: #555;
-}
-.textarea-icon-group .btn-group.float-right{
-  float: right;
-}
-/* Allows <i class="textarea-div-i-xxx" /> */
-[class^="textarea-i-"],
-[class*=" textarea-i-"] {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    margin-top: 1px;
-    line-height: 20px;
-    vertical-align: text-top;
-    
-}
-
-/* The individual RTA icons */
-.textarea-i-check {
-  color: green;
-}
-.textarea-i-bug {
-  color: #8E0000;
-}
-.textarea-i-remove {
-  color: #8E0000;
-}
-.textarea-i-square {
-  color: green;
-}
-.textarea-i-star {
-  color: #bbbb55;
-}
-
-.textarea-i-heart {
-  color: #ff5555;
-}
-
-.textarea-i-phone {
-  color: blue;
-}
-
-hr{
-  margin: 16px 15px;
-  border: 1px solid rgba(200,200,200,0.5);
-}
-
-.inserted-icon{
-  display: inline-block;
-  margin-right: 4px;
-  font-size: 15px;
-}
-
-.inserted-image {
-  display: block;
-  width: 100%;
-  
-}
-
-.show-all-icons-dropdown-menu {
-  background-color: #ffffe5; 
-  padding-left: 12px;
-  width: 220px;
-}
-
-.show-all-icons-dropdown-menu .btn{
-  border: 0px !important;
-}
 
 

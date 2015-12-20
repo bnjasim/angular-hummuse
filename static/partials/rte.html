@@ -1,6 +1,144 @@
 <div class="textarea-outer">
   <!-- Important that first child is icon-group and second child is text-area -->
   <div class="textarea-icon-group">
+
+    <div class="btn-group float-right" uib-dropdown>  
+
+        <button class="btn" type="button" ng-click='insertImage()' title="Image">
+          <div class="textarea-i-image fa fa-image"></div>
+        </button>
+
+        <button class="btn" type="button" ng-click="launchPaint()" title="Paint">
+          <div class="textarea-i-square" style="width:30px;margin-top:-1px">Paint</div>
+        </button>
+
+        <button class="btn" type="button" ng-click='runCommand("icon", "check-square-o")' title="Check">
+          <div class="textarea-i-check-square-o fa fa-check-square-o"></div>
+        </button>
+       
+     
+        <span type="button" uib-dropdown-toggle class="btn btn-default">
+          <div class="fa fa-caret-down"></div> 
+        </span>
+
+          <ul class="uib-dropdown-menu all-icons-dropdown-menu" role="menu">
+            
+            <button class="btn" type="button" ng-click='runCommand("icon", "smile-o")' title="Smiley">
+              <div class="textarea-i-smile fa fa-smile-o"></div>
+            </button>
+
+
+            <button class="btn" type="button" ng-click='runCommand("icon", "heart")' title="Heart">
+              <div class="textarea-i-heart fa fa-heart"></div>
+            </button>
+
+            <button class="btn" type="button" ng-click='runCommand("icon", "bug")' title="Bug">
+              <div class="textarea-i-bug fa fa-bug"></div>
+            </button>
+
+            <button class="btn" type="button" ng-click='runCommand("icon", "asterisk")' title="Asterisk">
+              <div class="textarea-i-a fa fa-asterisk"></div>
+            </button>
+
+            <button class="btn" type="button" ng-click='runCommand("icon", "remove")' title="Remove">
+              <div class="textarea-i-remove fa fa-remove"></div>
+            </button>
+
+            <button class="btn" type="button" ng-click='runCommand("icon", "thumbs-o-up")' title="Thumbs up">
+              <div class="textarea-i-thumbs-up fa fa-thumbs-o-up"></div>
+            </button>
+
+            <button class="btn" type="button" ng-click='runCommand("icon", "flask")' title="Flask">
+              <div class="textarea-i-phone fa fa-flask"></div>
+            </button>
+
+            <button class="btn" type="button" ng-click='runCommand("icon", "thumbs-o-down")' title="Thumbs down">
+              <div class="textarea-i-thumbs-down fa fa-thumbs-o-down"></div>
+            </button>            
+
+            <button class="btn" type="button" ng-click='runCommand("icon", "star")' title="Star">
+              <div class="textarea-i-star fa fa-star"></div>
+            </button>            
+
+
+            <button class="btn" type="button" ng-click='runCommand("icon", "hand-o-right")' title="Hand Right">
+              <div class="textarea-i-hand fa fa-hand-o-right"></div>
+            </button>
+
+
+            <button class="btn" type="button" ng-click='runCommand("icon", "hand-o-left")' title="Hand Left">
+              <div class="textarea-i-hand fa fa-hand-o-left"></div>
+            </button>
+
+
+            <button class="btn" type="button" ng-click='runCommand("icon", "warning")' title="Warning">
+              <div class="textarea-i-warning fa fa-warning"></div>
+            </button>
+
+
+            <button class="btn" type="button" ng-click='runCommand("icon", "download")' title="Download">
+              <div class="textarea-i-download fa fa-download"></div>
+            </button>
+
+
+            <button class="btn" type="button" ng-click='runCommand("icon", "trash-o")' title="Trash">
+              <div class="textarea-i-trash fa fa-trash-o"></div>
+            </button>
+
+            <button class="btn" type="button" ng-click='runCommand("icon", "lock")' title="Lock">
+              <div class="textarea-i-lock fa fa-lock"></div>
+            </button>
+
+            <button class="btn" type="button" ng-click='runCommand("icon", "ban")' title="Ban">
+              <div class="textarea-i-ban fa fa-ban"></div>
+            </button>
+
+            <button class="btn" type="button" ng-click='runCommand("icon", "bullhorn")' title="Horn">
+              <div class="textarea-i-bullhorn fa fa-bullhorn"></div>
+            </button>
+
+            <button class="btn" type="button" ng-click='runCommand("icon", "phone")' title="Call">
+              <div class="textarea-i-phone fa fa-phone"></div>
+            </button>
+
+            <button class="btn" type="button" ng-click='runCommand("icon", "music")' title="Music">
+              <div class="textarea-i-music fa fa-music"></div>
+            </button>
+
+            <button class="btn" type="button" ng-click='runCommand("icon", "book")' title="Book">
+              <div class="textarea-i-b fa fa-book"></div>
+            </button>
+
+            <button class="btn" type="button" ng-click='runCommand("icon", "envelope")' title="Message">
+              <div class="textarea-i-envelope fa fa-envelope"></div>
+            </button>
+
+            <button class="btn" type="button" ng-click='runCommand("icon", "comment")' title="Comment">
+              <div class="textarea-i-comment fa fa-comment"></div>
+            </button>
+
+            <button class="btn" type="button" ng-click='runCommand("icon", "question")' title="Question">
+              <div class="textarea-i-question fa fa-question"></div>
+            </button>
+
+            
+            <button class="btn" type="button" ng-click='runCommand("icon", "trophy")' title="Trophy">
+              <div class="textarea-i-trophy fa fa-trophy"></div>
+            </button>
+
+            <button class="btn" type="button" ng-click='runCommand("icon", "futbol-o")' title="Play">
+              <div class="textarea-i-play fa fa-futbol-o"></div>
+            </button>
+          </ul> 
+       
+    </div>
+
+    <div class="clearfix"></div>
+
+  <div class="textarea-icon-group-inner">
+
+  <div class="icon-group-inner">
+
     <div class="btn-group">
         <button class="btn" type="button" ng-click="runCommand('bold')" title="Bold">
           <b class="textarea-i-bold">B</b>
@@ -66,139 +204,12 @@
         </button>
 
     </div>
+
+  </div>  
+  </div>
                   
-    <div class="btn-group float-right" uib-dropdown>  
 
-    	<button class="btn" type="button" ng-click='insertImage()' title="Image">
-          <div class="textarea-i-image fa fa-image"></div>
-        </button>
-
-        <button class="btn" type="button" ng-click="launchPaint()" title="Paint">
-          <div class="textarea-i-square" style="width:30px;margin-top:-1px">Paint</div>
-        </button>
-
-        <button class="btn" type="button" ng-click='runCommand("icon", "check-square-o")' title="Check">
-          <div class="textarea-i-check-square-o fa fa-check-square-o"></div>
-        </button>
-       
-	   
-	      <span type="button" uib-dropdown-toggle class="btn btn-default dropdown-toggle">
-	        <div class="fa fa-caret-down"></div> 
-	      </span>
-
-          <ul class="uib-dropdown-menu dropdown-menu-right all-icons-dropdown-menu" role="menu">
-            
-            <button class="btn" type="button" ng-click='runCommand("icon", "smile-o")' title="Smiley">
-              <div class="textarea-i-smile fa fa-smile-o"></div>
-            </button>
-
-
-            <button class="btn" type="button" ng-click='runCommand("icon", "heart")' title="Heart">
-              <div class="textarea-i-heart fa fa-heart"></div>
-            </button>
-
-            <button class="btn" type="button" ng-click='runCommand("icon", "bug")' title="Bug">
-              <div class="textarea-i-bug fa fa-bug"></div>
-            </button>
-
-            <button class="btn" type="button" ng-click='runCommand("icon", "asterisk")' title="Asterisk">
-              <div class="textarea-i-a fa fa-asterisk"></div>
-            </button>
-
-            <button class="btn" type="button" ng-click='runCommand("icon", "remove")' title="Remove">
-              <div class="textarea-i-remove fa fa-remove"></div>
-            </button>
-
-            <button class="btn" type="button" ng-click='runCommand("icon", "thumbs-o-up")' title="Thumbs up">
-              <div class="textarea-i-thumbs-up fa fa-thumbs-o-up"></div>
-            </button>
-
-			<button class="btn" type="button" ng-click='runCommand("icon", "flask")' title="Flask">
-              <div class="textarea-i-phone fa fa-flask"></div>
-            </button>
-
-            <button class="btn" type="button" ng-click='runCommand("icon", "thumbs-o-down")' title="Thumbs down">
-              <div class="textarea-i-thumbs-down fa fa-thumbs-o-down"></div>
-            </button>            
-
-            <button class="btn" type="button" ng-click='runCommand("icon", "star")' title="Star">
-              <div class="textarea-i-star fa fa-star"></div>
-            </button>            
-
-
-            <button class="btn" type="button" ng-click='runCommand("icon", "hand-o-right")' title="Hand Right">
-              <div class="textarea-i-hand fa fa-hand-o-right"></div>
-            </button>
-
-
-            <button class="btn" type="button" ng-click='runCommand("icon", "hand-o-left")' title="Hand Left">
-              <div class="textarea-i-hand fa fa-hand-o-left"></div>
-            </button>
-
-
-            <button class="btn" type="button" ng-click='runCommand("icon", "warning")' title="Warning">
-              <div class="textarea-i-warning fa fa-warning"></div>
-            </button>
-
-
-            <button class="btn" type="button" ng-click='runCommand("icon", "download")' title="Download">
-              <div class="textarea-i-download fa fa-download"></div>
-            </button>
-
-
-            <button class="btn" type="button" ng-click='runCommand("icon", "trash-o")' title="Trash">
-              <div class="textarea-i-trash fa fa-trash-o"></div>
-            </button>
-
-            <button class="btn" type="button" ng-click='runCommand("icon", "lock")' title="Lock">
-              <div class="textarea-i-lock fa fa-lock"></div>
-            </button>
-
-            <button class="btn" type="button" ng-click='runCommand("icon", "ban")' title="Ban">
-              <div class="textarea-i-ban fa fa-ban"></div>
-            </button>
-
-            <button class="btn" type="button" ng-click='runCommand("icon", "bullhorn")' title="Horn">
-              <div class="textarea-i-bullhorn fa fa-bullhorn"></div>
-            </button>
-
-            <button class="btn" type="button" ng-click='runCommand("icon", "phone")' title="Call">
-              <div class="textarea-i-phone fa fa-phone"></div>
-            </button>
-
-           <button class="btn" type="button" ng-click='runCommand("icon", "music")' title="Music">
-              <div class="textarea-i-music fa fa-music"></div>
-            </button>
-
-            <button class="btn" type="button" ng-click='runCommand("icon", "book")' title="Book">
-              <div class="textarea-i-b fa fa-book"></div>
-            </button>
-
-            <button class="btn" type="button" ng-click='runCommand("icon", "envelope")' title="Message">
-              <div class="textarea-i-envelope fa fa-envelope"></div>
-            </button>
-
-            <button class="btn" type="button" ng-click='runCommand("icon", "comment")' title="Comment">
-              <div class="textarea-i-comment fa fa-comment"></div>
-            </button>
-
-            <button class="btn" type="button" ng-click='runCommand("icon", "question")' title="Question">
-              <div class="textarea-i-question fa fa-question"></div>
-            </button>
-
-            
-            <button class="btn" type="button" ng-click='runCommand("icon", "trophy")' title="Trophy">
-              <div class="textarea-i-trophy fa fa-trophy"></div>
-            </button>
-
-            <button class="btn" type="button" ng-click='runCommand("icon", "futbol-o")' title="Play">
-              <div class="textarea-i-play fa fa-futbol-o"></div>
-            </button>
-          </ul> 
-       
-    </div>
-
-  </div>   
+</div>
 
 <div class="clearfix"></div>
 

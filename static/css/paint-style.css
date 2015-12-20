@@ -8,16 +8,10 @@
 
 /* Text Area - with Div */
 .textarea-outer {
-	width: 100vw;
+	width: 100%;
 	margin: 0px 5px;	
 }
 
-@media(min-width: 776px) { /* for large devices fix width */
-	.textarea-outer {
-		width: 700px;
-		margin: auto;
-	}
-}
 
 .textarea-div {
     min-height: 240px;
@@ -59,9 +53,19 @@
     margin-right: 0;
 }
 
-.textarea-icon-group{
-  background-color: #fbfbfb;
+.textarea-icon-group {
+  /*background-color: #fbfbfb;*/
   border-bottom: 2px solid #cccccc;
+  width: 100%;
+  
+}
+
+.textarea-icon-group-inner {
+	overflow: auto; /* scroll */	
+}
+
+.icon-group-inner {
+	width: 560px; /* total width of icons except paint, image btn-group */
 }
 
 .textarea-icon-group .btn-group .btn{
@@ -72,7 +76,7 @@
   color: #555;
 }
 .textarea-icon-group .btn-group.float-right{
-  float: right;
+  float: left;
 }
 /* Allows <i class="textarea-div-i-xxx" /> */
 [class^="textarea-i-"],
@@ -116,6 +120,10 @@
 
 .textarea-i-flask {
 	color: blue;
+}
+
+.fa-caret-down {
+	width: 26px;
 }
 
 hr{
