@@ -3,7 +3,7 @@ angular.module('hummuse-app', ['ui.bootstrap', 'hummuse.CollapseServiceModule',
                                'hummuse.MainPanelModule', 'hummuse.TimerModule',
                                'hummuse.DataContainerModule',
                                'hummuse.texteditor', 'hummuse.paint',
-                               'ngAnimate', 'ngTouch', 'chart.js'])
+                               'ngAnimate',  'chart.js'])
 
 // The buttons to collapse panels in th navigation top-fixed-nav-panel
 .controller('NavigationCtrl', function (leftCollapseService, rightCollapseService) {

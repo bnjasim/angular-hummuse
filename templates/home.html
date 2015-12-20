@@ -79,11 +79,11 @@
 
 </div>
 
-<!-- As special overlay for swipeLeft and swipeRight for mobile devices -->
+<!-- As special overlay for swipeLeft and swipeRight for mobile devices 
 <div class="visible-xs" ng-controller="OverlayCtrl as octrl">
   <div id="left-overlay" ng-swipe-right="octrl.isCollapsedLeft = false"></div>
   <div id="right-overlay" ng-swipe-left="octrl.isCollapsedRight = false"></div>
-</div>  
+</div>  -->
 
 {% raw %} <!-- Avoided by jinja and swig -->
 <div class="container">
@@ -114,7 +114,7 @@
 
 <!-- MAIN PANEL  -->
 <div id="main-panel" class="col-sm-9 col-md-8" ng-controller="MainPanelCtrl as mctrl" hummuse-touch="mctrl.touchMode">
-
+<div class="row"> <!-- only for full width view in mobiles -->
   <!-- Directive -->
   <paintangular></paintangular>
 
@@ -126,6 +126,7 @@
   <one-day ng-repeat="day in mctrl.data.json">
   </one-day>
 
+</div>
 </div>
 
 
